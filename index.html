@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+
+    <Script
+      src="https://assistloop.ai/assistloop-widget.js"
+      strategy="afterInteractive"
+      onLoad={() => {
+        window.AssistLoopWidget?.init({
+          agentId: process.env.NEXT_PUBLIC_ASSISTLOOP_AGENT_ID,
+        });
+      }}
+/>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
