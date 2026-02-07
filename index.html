@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html data-agent-id="ec39b6b7-95bd-4e02-86e5-76552903f58c" lang="ru">
   <head>
 
     
@@ -24,6 +24,36 @@
   <body>
     <div id="root"></div>
 
-  <script>window.ASSISTLOOP_AGENT_ID = "ec39b6b7-95bd-4e02-86e5-76552903f58c";</script>
+  <!-- Вставьте в <head> или перед </body> -->
+<script>
+  (function () {
+    // Создаём скрипт виджета
+    const widgetScript = document.createElement('script');
+    widgetScript.src = 'https://assistloop.ai/assistloop-widget.js';
+    widgetScript.async = false;
+
+    // Инициализируем после загрузки
+    widgetScript.onload = function () {
+      if (typeof window.AssistLoopWidget === 'function') {
+        // Читаем agentId из data-атрибута элемента <html> или <body>
+        const agentId = document.documentElement.dataset.agentId ||
+                        document.body.dataset.agentId ||
+                        null;
+
+        if (agentId) {
+          window.AssistLoopWidget.init({
+            agentId: agentId,
+            strategy: 'afterInteractive'
+          });
+        } else {
+          console.warn('⚠️ AssistLoop: agentId not found in data-agent-id');
+        }
+      }
+    };
+
+    document.head.appendChild(widgetScript);
+  })();
+</script>
+
   </body>
 </html>
